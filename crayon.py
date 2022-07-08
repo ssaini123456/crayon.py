@@ -32,6 +32,17 @@ class Craiyon:
         self.headers["Content-Type"] = "application/json"
 
     async def generate(self, count: int = 1, output_str: str = None, *, text: str = None):
+        """Perform a call to craiyon with your desired prompt and get several images back.
+
+        Args:
+            count (int, optional): The amount of images retrieved from Craiyon. Defaults to 1, and the limit is 6.
+            output_str (str, optional): The output name. Example: output_str.jpg
+            text (str, optional): The actual prompt itself. Defaults to None.
+
+        Raises:
+            CraiyonWantedSizeTooBigError: If the wanted count exceeds 6.
+            CraiyonNoOutputProvidedError: If the output name was empty.
+        """
         if count > 6:
             raise CraiyonWantedSizeTooBigError("Your wanted size must not exceed 6.")
 
@@ -51,7 +62,6 @@ class Craiyon:
                 # grab our json response asynchronously
                 to_json = await resp.json()
 
-        image_id = uuid.uuid4()
                 
         data_url_template = "data:image/jpeg;base64,"
         
