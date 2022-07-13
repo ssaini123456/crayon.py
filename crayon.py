@@ -1,9 +1,6 @@
-#
 # author: Sutinder S. Saini
-#
 # github: https://github.com/sa111n111
-#
-#
+
 import random
 import io
 import aiohttp
