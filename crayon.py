@@ -8,6 +8,7 @@ import random
 import io
 import aiohttp
 import asyncio
+import aiofiles
 import json
 import uuid
 import urllib.parse
@@ -72,9 +73,10 @@ class Craiyon:
             # Prepare image download. we simply use urlopen to open our data URI
             # and write its contents to an image.jpg file.
             response = urllib.request.urlopen(url_fmt)
-            with open('{}'.format(output_str), 'wb') as f:
-                f.write(response.file.read())
+            async with aiofiles.open('{}'.format(output_str), mode='wb') as f:
+                await f.write(response.file.read())
+
 
 #craiyon = Craiyon()
 #uuid_tag = uuid.uuid4()
-#asyncio.run(craiyon.generate(count=3, output_str=f"{uuid_tag}_img.jpg", text="Rock the Casbah"))
+#asyncio.run(craiyon.generate(count=3, output_str=f"{uuid_tag}_img.jpg", text="Rocks"))
