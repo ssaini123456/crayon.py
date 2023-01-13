@@ -1,5 +1,5 @@
 # author: Sutinder S. Saini
-# github: https://github.com/sa111n111
+# github: https://github.com/xk0sm1c
 
 import random
 import io
